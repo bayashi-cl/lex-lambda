@@ -1,3 +1,3 @@
-# common-utils
+# lex-bot
 
 Describe your project here.

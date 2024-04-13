@@ -1,5 +1,5 @@
 {
-  "app": "python3 -m rye_lambda_cdk",
+  "app": "python -m lex_lambda",
   "watch": {
     "include": [
       "**"

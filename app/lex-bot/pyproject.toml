@@ -1,12 +1,10 @@
 [project]
-name = "common-utils"
+name = "lex-bot"
 version = "0.1.0"
 description = "Add your description here"
-authors = [
-    { name = "Masaki Kobayashi", email = "bayashi.cl@gmail.com" }
-]
+authors = [{ name = "Masaki Kobayashi", email = "bayashi.cl@gmail.com" }]
 dependencies = [
-    "requests>=2.31.0",
+    "pydantic>=2.7.0",
 ]
 readme = "README.md"
 requires-python = ">= 3.12"
@@ -17,10 +15,12 @@ build-backend = "hatchling.build"
 
 [tool.rye]
 managed = true
-dev-dependencies = []
+dev-dependencies = [
+    "pytest>=8.1.1",
+]
 
 [tool.hatch.metadata]
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/common_utils"]
+packages = ["src/lex_bot"]

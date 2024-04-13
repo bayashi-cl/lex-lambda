@@ -1,0 +1,283 @@
+[
+  {
+    "sessionId": "464004464459269",
+    "inputTranscript": "test",
+    "interpretations": [
+      {
+        "nluConfidence": 0.83,
+        "intent": {
+          "confirmationState": "None",
+          "name": "TestIntent",
+          "slots": {
+            "slot2": null,
+            "slot1": null
+          },
+          "state": "InProgress"
+        },
+        "interpretationSource": "Lex"
+      },
+      {
+        "intent": {
+          "confirmationState": "None",
+          "name": "FallbackIntent",
+          "slots": {},
+          "state": "InProgress"
+        },
+        "interpretationSource": "Lex"
+      }
+    ],
+    "bot": {
+      "aliasId": "TSTALIASID",
+      "aliasName": "TestBotAlias",
+      "name": "TestBot",
+      "version": "DRAFT",
+      "localeId": "ja_JP",
+      "id": "SGBUWQHQLW"
+    },
+    "responseContentType": "text/plain; charset=utf-8",
+    "proposedNextState": {
+      "prompt": {
+        "attempt": "Initial"
+      },
+      "intent": {
+        "confirmationState": "None",
+        "name": "TestIntent",
+        "slots": {
+          "slot2": null,
+          "slot1": null
+        },
+        "state": "InProgress"
+      },
+      "dialogAction": {
+        "slotToElicit": "slot1",
+        "type": "ElicitSlot"
+      }
+    },
+    "sessionState": {
+      "sessionAttributes": {},
+      "intent": {
+        "confirmationState": "None",
+        "name": "TestIntent",
+        "slots": {
+          "slot2": null,
+          "slot1": null
+        },
+        "state": "InProgress"
+      },
+      "originatingRequestId": "fb478a30-fd52-4c66-a4bd-74a9329a2599"
+    },
+    "messageVersion": "1.0",
+    "invocationSource": "DialogCodeHook",
+    "inputMode": "Text"
+  },
+  {
+    "sessionId": "464004464459269",
+    "inputTranscript": "a",
+    "interpretations": [
+      {
+        "nluConfidence": 1.0,
+        "intent": {
+          "confirmationState": "None",
+          "name": "TestIntent",
+          "slots": {
+            "slot2": null,
+            "slot1": {
+              "shape": "Scalar",
+              "value": {
+                "originalValue": "a",
+                "resolvedValues": [],
+                "interpretedValue": "a"
+              }
+            }
+          },
+          "state": "InProgress"
+        },
+        "interpretationSource": "Lex"
+      }
+    ],
+    "bot": {
+      "aliasId": "TSTALIASID",
+      "aliasName": "TestBotAlias",
+      "name": "TestBot",
+      "version": "DRAFT",
+      "localeId": "ja_JP",
+      "id": "SGBUWQHQLW"
+    },
+    "responseContentType": "text/plain; charset=utf-8",
+    "proposedNextState": {
+      "prompt": {
+        "attempt": "Initial"
+      },
+      "intent": {
+        "confirmationState": "None",
+        "name": "TestIntent",
+        "slots": {
+          "slot2": null,
+          "slot1": {
+            "shape": "Scalar",
+            "value": {
+              "originalValue": "a",
+              "resolvedValues": [],
+              "interpretedValue": "a"
+            }
+          }
+        },
+        "state": "InProgress"
+      },
+      "dialogAction": {
+        "slotToElicit": "slot2",
+        "type": "ElicitSlot"
+      }
+    },
+    "sessionState": {
+      "sessionAttributes": {},
+      "activeContexts": [],
+      "intent": {
+        "confirmationState": "None",
+        "name": "TestIntent",
+        "slots": {
+          "slot2": null,
+          "slot1": {
+            "shape": "Scalar",
+            "value": {
+              "originalValue": "a",
+              "resolvedValues": [],
+              "interpretedValue": "a"
+            }
+          }
+        },
+        "state": "InProgress"
+      },
+      "originatingRequestId": "fb478a30-fd52-4c66-a4bd-74a9329a2599"
+    },
+    "messageVersion": "1.0",
+    "invocationSource": "DialogCodeHook",
+    "invocationLabel": "TestIntent-slot1",
+    "inputMode": "Text"
+  },
+  {
+    "sessionId": "464004464459269",
+    "inputTranscript": "b",
+    "interpretations": [
+      {
+        "nluConfidence": 1.0,
+        "intent": {
+          "confirmationState": "None",
+          "name": "TestIntent",
+          "slots": {
+            "slot2": {
+              "shape": "Scalar",
+              "value": {
+                "originalValue": "b",
+                "resolvedValues": [],
+                "interpretedValue": "b"
+              }
+            },
+            "slot1": {
+              "shape": "Scalar",
+              "value": {
+                "originalValue": "a",
+                "resolvedValues": [],
+                "interpretedValue": "a"
+              }
+            }
+          },
+          "state": "InProgress"
+        },
+        "interpretationSource": "Lex"
+      }
+    ],
+    "bot": {
+      "aliasId": "TSTALIASID",
+      "aliasName": "TestBotAlias",
+      "name": "TestBot",
+      "version": "DRAFT",
+      "localeId": "ja_JP",
+      "id": "SGBUWQHQLW"
+    },
+    "responseContentType": "text/plain; charset=utf-8",
+    "sessionState": {
+      "sessionAttributes": {},
+      "activeContexts": [],
+      "intent": {
+        "confirmationState": "None",
+        "name": "TestIntent",
+        "slots": {
+          "slot2": {
+            "shape": "Scalar",
+            "value": {
+              "originalValue": "b",
+              "resolvedValues": [],
+              "interpretedValue": "b"
+            }
+          },
+          "slot1": {
+            "shape": "Scalar",
+            "value": {
+              "originalValue": "a",
+              "resolvedValues": [],
+              "interpretedValue": "a"
+            }
+          }
+        },
+        "state": "InProgress"
+      },
+      "originatingRequestId": "fb478a30-fd52-4c66-a4bd-74a9329a2599"
+    },
+    "messageVersion": "1.0",
+    "invocationSource": "DialogCodeHook",
+    "invocationLabel": "TestIntent-slot2",
+    "inputMode": "Text"
+  },
+  {
+    "sessionId": "464004464459269",
+    "inputTranscript": "v",
+    "interpretations": [
+      {
+        "intent": {
+          "confirmationState": "None",
+          "name": "FallbackIntent",
+          "slots": {},
+          "state": "InProgress"
+        },
+        "interpretationSource": "Lex"
+      },
+      {
+        "nluConfidence": 0.36,
+        "intent": {
+          "confirmationState": "None",
+          "name": "TestIntent",
+          "slots": {
+            "slot2": null,
+            "slot1": null
+          },
+          "state": "InProgress"
+        },
+        "interpretationSource": "Lex"
+      }
+    ],
+    "bot": {
+      "aliasId": "TSTALIASID",
+      "aliasName": "TestBotAlias",
+      "name": "TestBot",
+      "version": "DRAFT",
+      "localeId": "ja_JP",
+      "id": "SGBUWQHQLW"
+    },
+    "responseContentType": "text/plain; charset=utf-8",
+    "sessionState": {
+      "sessionAttributes": {},
+      "activeContexts": [],
+      "intent": {
+        "confirmationState": "None",
+        "name": "FallbackIntent",
+        "slots": {},
+        "state": "InProgress"
+      },
+      "originatingRequestId": "fb478a30-fd52-4c66-a4bd-74a9329a2599"
+    },
+    "messageVersion": "1.0",
+    "invocationSource": "DialogCodeHook",
+    "inputMode": "Text"
+  }
+]

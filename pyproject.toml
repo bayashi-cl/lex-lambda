@@ -1,5 +1,5 @@
 [project]
-name = "rye-lambda-cdk"
+name = "lex-lambda"
 version = "0.1.0"
 description = "Add your description here"
 authors = [{ name = "Masaki Kobayashi", email = "bayashi.cl@gmail.com" }]
@@ -8,7 +8,7 @@ readme = "README.md"
 requires-python = ">= 3.12"
 
 [project.scripts]
-"rye-lambda-cdk" = "rye_lambda_cdk:main"
+"lex-lambda" = "lex_lambda:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -16,16 +16,27 @@ build-backend = "hatchling.build"
 
 [tool.rye]
 managed = true
-dev-dependencies = []
+dev-dependencies = ["boto3>=1.34.84", "boto3-stubs[logs]>=1.34.84"]
 
 [tool.rye.workspace]
 members = ["app/*"]
 
+[tool.rye.scripts]
+clean = "scripts/crean_assets.sh"
+
 [tool.hatch.metadata]
 allow-direct-references = true
 
+
 [tool.hatch.build.targets.wheel]
-packages = ["src/rye_lambda_cdk"]
+packages = ["src/lex_lambda"]
 
 [tool.ruff]
 line-length = 120
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["D", "ANN101", "ISC001", "COM812"]
+
+[tool.pytest.ini_options]
+norecursedirs = "cdk.out"

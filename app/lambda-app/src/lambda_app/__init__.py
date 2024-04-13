@@ -1,8 +1,3 @@
-from typing import Any
+from .handler import handler
 
-import common_utils
-from aws_lambda_powertools.utilities.typing import LambdaContext
-
-
-def handler(event: dict[str, Any], context: LambdaContext) -> dict[str, str]:
-    return {"statusCode": "200"}
+__all__ = ["handler"]
