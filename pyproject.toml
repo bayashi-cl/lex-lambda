@@ -1,0 +1,31 @@
+[project]
+name = "rye-lambda-cdk"
+version = "0.1.0"
+description = "Add your description here"
+authors = [{ name = "Masaki Kobayashi", email = "bayashi.cl@gmail.com" }]
+dependencies = ["aws-cdk-lib>=2.133.0"]
+readme = "README.md"
+requires-python = ">= 3.12"
+
+[project.scripts]
+"rye-lambda-cdk" = "rye_lambda_cdk:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.rye.workspace]
+members = ["app/*"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rye_lambda_cdk"]
+
+[tool.ruff]
+line-length = 120
