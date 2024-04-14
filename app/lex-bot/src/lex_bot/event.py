@@ -5,6 +5,7 @@ from typing import Any, Literal
 from pydantic import BaseModel, ConfigDict, Field
 from pydantic.alias_generators import to_camel
 
+# TODO
 KendraResponse = Any
 ActiveContext = Any
 RuntimeHints = Any
@@ -16,7 +17,7 @@ ImageResponseCard = Any
 
 class CommonBaseModel(BaseModel):
     model_config = ConfigDict(
-        alias_generator=to_camel,
+        alias_generator=lambda s: to_camel(s).removesuffix("_"),
         populate_by_name=True,
     )
 
@@ -24,11 +25,7 @@ class CommonBaseModel(BaseModel):
 class DialogAction(CommonBaseModel):
     slot_elicitation_style: Literal["Default", "SpellByLetter", "SpellByWord"] = "Default"
     slot_to_elicit: str | None = None
-    type_: Literal["Close", "ConfirmIntent", "Delegate", "ElicitIntent", "ElicitSlot"] = Field(alias="type")
-
-    @staticmethod
-    def default() -> DialogAction:
-        return DialogAction(type="Delegate")
+    type_: Literal["Close", "ConfirmIntent", "Delegate", "ElicitIntent", "ElicitSlot"]
 
 
 class SlotValue(CommonBaseModel):
@@ -52,16 +49,16 @@ class Intent(CommonBaseModel):
 
 
 class SessionState(CommonBaseModel):
-    session_attributes: dict[str, str] = {}
+    session_attributes: dict[str, str] = Field(default_factory=dict)
     active_contexts: list[ActiveContext] | None = None
     runtime_hints: RuntimeHints | None = None
-    dialog_action: DialogAction = DialogAction.default()
+    dialog_action: DialogAction = DialogAction(type_="Delegate")
     intent: Intent
     originating_request_id: str
 
 
 class Bot(CommonBaseModel):
-    id_: str = Field(alias="id")
+    id_: str
     name: str
     locale_id: str
     version: str

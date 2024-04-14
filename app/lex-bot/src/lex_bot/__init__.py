@@ -1,3 +1,5 @@
-from .lex_event_schema import DialogAction, LexEvent, LexResponse, SessionState
+from .bot import Bot
+from .event import LexEvent, LexResponse
+from .session import LexSession
 
-__all__ = ["LexEvent", "SessionState", "DialogAction", "LexResponse"]
+__all__ = ["LexEvent", "LexResponse", "LexSession", "Bot"]

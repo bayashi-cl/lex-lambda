@@ -3,9 +3,7 @@ name = "lex-bot"
 version = "0.1.0"
 description = "Add your description here"
 authors = [{ name = "Masaki Kobayashi", email = "bayashi.cl@gmail.com" }]
-dependencies = [
-    "pydantic>=2.7.0",
-]
+dependencies = ["pydantic>=2.7.0"]
 readme = "README.md"
 requires-python = ">= 3.12"
 
@@ -15,12 +13,13 @@ build-backend = "hatchling.build"
 
 [tool.rye]
 managed = true
-dev-dependencies = [
-    "pytest>=8.1.1",
-]
+dev-dependencies = ["pytest>=8.1.1"]
 
 [tool.hatch.metadata]
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/lex_bot"]
+
+[tool.ruff]
+line-length = 120
