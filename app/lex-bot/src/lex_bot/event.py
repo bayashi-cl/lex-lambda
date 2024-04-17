@@ -7,12 +7,6 @@ from pydantic.alias_generators import to_camel
 
 # TODO
 KendraResponse = Any
-ActiveContext = Any
-RuntimeHints = Any
-Interpretation = Any
-ProposedNextState = Any
-Transcription = Any
-ImageResponseCard = Any
 
 
 class CommonBaseModel(BaseModel):
@@ -48,6 +42,69 @@ class Intent(CommonBaseModel):
     kendra_response: KendraResponse | None = None
 
 
+class TimeToLive(CommonBaseModel):
+    time_to_live_in_seconds: int
+    turns_to_live: int
+
+
+class ActiveContext(CommonBaseModel):
+    name: str
+    context_attributes: dict[str, str]
+    time_to_live: TimeToLive
+
+
+class ResolvedContext(CommonBaseModel):
+    intent: str
+
+
+class Transcription(CommonBaseModel):
+    transcription: str
+    transcription_confidence: str
+    resolved_context: ResolvedContext
+    resolved_slots: dict[str, Slot]
+
+
+class Prompt(CommonBaseModel):
+    attempt: Literal["Initial", "Retry1", "Retry2", "Retry3", "Retry4", "Retry5"]
+
+
+class ProposedNextState(CommonBaseModel):
+    dialog_action: DialogAction
+    intent: Intent
+    prompt: Prompt
+
+
+class SentimentScore(CommonBaseModel):
+    mixed: float
+    negative: float
+    neutral: float
+    positive: float
+
+
+class SentimentResponse(CommonBaseModel):
+    sentiment: Literal["MIXED", "NEGATIVE", "NEUTRAL", "POSITIVE"]
+    sentiment_score: SentimentScore
+
+
+class Interpretation(CommonBaseModel):
+    intent: Intent
+    interpretation_source: Literal["Bedrock", "Lex"]
+    nlu_confidence: float | None = None
+    sentiment_response: SentimentResponse | None = None
+
+
+class Phase(CommonBaseModel):
+    phrase: str
+
+
+class SlotHint(CommonBaseModel):
+    runtime_hint_values: list[Phase]
+
+
+class RuntimeHints(CommonBaseModel):
+    slot_hints: dict[str, dict[str, SlotHint]]
+
+
 class SessionState(CommonBaseModel):
     session_attributes: dict[str, str] = Field(default_factory=dict)
     active_contexts: list[ActiveContext] | None = None
@@ -80,6 +137,18 @@ class LexEvent(CommonBaseModel):
     request_attributes: dict[str, str] = Field(default_factory=dict)
     session_state: SessionState
     transcriptions: list[Transcription] | None = None
+
+
+class Button(CommonBaseModel):
+    text: str
+    value: str
+
+
+class ImageResponseCard(CommonBaseModel):
+    title: str
+    subtitle: str
+    imageUrl: str
+    buttons: list[Button]
 
 
 class Message(CommonBaseModel):
