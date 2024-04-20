@@ -11,6 +11,9 @@ from aws_cdk import (
     aws_logs,
 )
 from constructs import Construct
+from lambda_app.bot import bot as bot_def
+
+from .bot_def import bot_as_cfn
 
 LOCALE_JP = "ja_JP"
 BUNDLE_COMMAND_TEMPLATE = r"""\
@@ -61,80 +64,7 @@ class LexLambdaStack(Stack):
             name="TestBot",
             role_arn=bot_role.role_arn,
             auto_build_bot_locales=True,
-            bot_locales=[
-                aws_lex.CfnBot.BotLocaleProperty(
-                    locale_id=LOCALE_JP,
-                    nlu_confidence_threshold=0.5,
-                    intents=[
-                        aws_lex.CfnBot.IntentProperty(
-                            name="FallbackIntent",
-                            parent_intent_signature="AMAZON.FallbackIntent",
-                            dialog_code_hook=aws_lex.CfnBot.DialogCodeHookSettingProperty(enabled=True),
-                        ),
-                        aws_lex.CfnBot.IntentProperty(
-                            name="TestIntent",
-                            sample_utterances=[aws_lex.CfnBot.SampleUtteranceProperty(utterance="test intent")],
-                            slots=[
-                                aws_lex.CfnBot.SlotProperty(
-                                    name="slot1",
-                                    slot_type_name="AMAZON.FreeFormInput",
-                                    value_elicitation_setting=aws_lex.CfnBot.SlotValueElicitationSettingProperty(
-                                        slot_constraint="Required",
-                                        slot_capture_setting=aws_lex.CfnBot.SlotCaptureSettingProperty(
-                                            elicitation_code_hook=aws_lex.CfnBot.ElicitationCodeHookInvocationSettingProperty(
-                                                enable_code_hook_invocation=True,
-                                                invocation_label="TestIntent-slot1",
-                                            )
-                                        ),
-                                        prompt_specification=aws_lex.CfnBot.PromptSpecificationProperty(
-                                            max_retries=1,
-                                            message_groups_list=[
-                                                aws_lex.CfnBot.MessageGroupProperty(
-                                                    message=aws_lex.CfnBot.MessageProperty(
-                                                        plain_text_message=aws_lex.CfnBot.PlainTextMessageProperty(
-                                                            value="slot1-message",
-                                                        ),
-                                                    ),
-                                                ),
-                                            ],
-                                        ),
-                                    ),
-                                ),
-                                aws_lex.CfnBot.SlotProperty(
-                                    name="slot2",
-                                    slot_type_name="AMAZON.FreeFormInput",
-                                    value_elicitation_setting=aws_lex.CfnBot.SlotValueElicitationSettingProperty(
-                                        slot_constraint="Required",
-                                        slot_capture_setting=aws_lex.CfnBot.SlotCaptureSettingProperty(
-                                            elicitation_code_hook=aws_lex.CfnBot.ElicitationCodeHookInvocationSettingProperty(
-                                                enable_code_hook_invocation=True,
-                                                invocation_label="TestIntent-slot2",
-                                            )
-                                        ),
-                                        prompt_specification=aws_lex.CfnBot.PromptSpecificationProperty(
-                                            max_retries=1,
-                                            message_groups_list=[
-                                                aws_lex.CfnBot.MessageGroupProperty(
-                                                    message=aws_lex.CfnBot.MessageProperty(
-                                                        plain_text_message=aws_lex.CfnBot.PlainTextMessageProperty(
-                                                            value="slot2-message",
-                                                        ),
-                                                    ),
-                                                ),
-                                            ],
-                                        ),
-                                    ),
-                                ),
-                            ],
-                            slot_priorities=[
-                                aws_lex.CfnBot.SlotPriorityProperty(priority=1, slot_name="slot1"),
-                                aws_lex.CfnBot.SlotPriorityProperty(priority=2, slot_name="slot2"),
-                            ],
-                            dialog_code_hook=aws_lex.CfnBot.DialogCodeHookSettingProperty(enabled=True),
-                        ),
-                    ],
-                ),
-            ],
+            bot_locales=[bot_as_cfn(bot_def)],
             test_bot_alias_settings=aws_lex.CfnBot.TestBotAliasSettingsProperty(
                 bot_alias_locale_settings=[
                     aws_lex.CfnBot.BotAliasLocaleSettingsItemProperty(

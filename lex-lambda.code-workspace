@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "app/lambda-app"
+		},
+		{
+			"path": "app/lex-bot"
+		}
+	],
+	"settings": {}
+}

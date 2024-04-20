@@ -2,11 +2,10 @@ import logging
 
 from aws_lambda_powertools.utilities import parser
 from aws_lambda_powertools.utilities.typing import LambdaContext
-from lex_bot import Bot, LexEvent, LexResponse, LexSession
+from lex_bot import LexEvent, LexResponse, LexSession
 
+from .bot import bot
 from .util import dump_response
-
-bot = Bot(name="TestBot", intents=[])
 
 
 @dump_response

@@ -1,12 +1,14 @@
 from __future__ import annotations
 
-from typing import Any, Literal
+from typing import TYPE_CHECKING, Any, Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, Json
 from pydantic.alias_generators import to_camel
 
-# TODO
-KendraResponse = Any
+if TYPE_CHECKING:
+    from mypy_boto3_kendra.type_defs import QueryRequestRequestTypeDef
+else:
+    QueryRequestRequestTypeDef = Json
 
 
 class CommonBaseModel(BaseModel):
@@ -39,7 +41,7 @@ class Intent(CommonBaseModel):
     name: str
     slots: dict[str, Slot | None]
     state: Literal["Failed", "Fulfilled", "FulfillmentInProgress", "InProgress", "ReadyForFulfillment", "Waiting"]
-    kendra_response: KendraResponse | None = None
+    kendra_response: QueryRequestRequestTypeDef | None = None
 
 
 class TimeToLive(CommonBaseModel):
