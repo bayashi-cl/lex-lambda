@@ -5,7 +5,6 @@ description = "Add your description here"
 authors = [{ name = "Masaki Kobayashi", email = "bayashi.cl@gmail.com" }]
 dependencies = [
     "pydantic>=2.7.0",
-    "jsonalias>=0.1.2",
 ]
 readme = "README.md"
 requires-python = ">= 3.12"

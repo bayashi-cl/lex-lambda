@@ -9,8 +9,10 @@
 
 -e file:.
 -e file:app/lambda-app
+    # via lex-lambda
 -e file:app/lex-bot
     # via lambda-app
+    # via lex-lambda
 annotated-types==0.6.0
     # via pydantic
 attrs==23.2.0
@@ -38,8 +40,6 @@ jsii==1.97.0
     # via aws-cdk-asset-node-proxy-agent-v6
     # via aws-cdk-lib
     # via constructs
-jsonalias==0.1.2
-    # via lex-bot
 publication==0.0.3
     # via aws-cdk-asset-awscli-v1
     # via aws-cdk-asset-kubectl-v20
